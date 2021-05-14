@@ -13,6 +13,11 @@ class BdLivrosOpenHelper(context: Context?)
      * @param db The database.
      */
     override fun onCreate(db: SQLiteDatabase?) {
+        if (db != null) {
+            TabelaCategorias(db).cria()
+
+            
+        }
 
     }
 
