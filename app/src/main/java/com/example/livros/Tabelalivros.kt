@@ -1,12 +1,28 @@
 package com.example.livros
 
 import android.database.sqlite.SQLiteDatabase
+import android.provider.BaseColumns
 
 class Tabelalivros (db: SQLiteDatabase) {
     private val db: SQLiteDatabase = db
 
     fun cria() {
-        db.execSQL("CREATE TABLE livros(_id INTEGER PRIMARY KEY AUTOINCREMENT, titulo TEXT NOT NULL, autor TEXT NOT NULL,  id_categoria INTEGER NOT NULL, FOREIGN kEY(id_categoria)REFERENCES categorias)")
+        db.execSQL("CREATE TABLE " + NOME_TABELA + "(" +
+                BaseColumns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                CAMPO_TITULO + " TEXT NOT NULL," +
+                CAMPO_AUTOR + " TEXT NOT NULL, " +
+                CAMPO_ID_CATEGORIA + " INTEGER NOT NULL," +
+                "FOREIGN kEY(" + CAMPO_ID_CATEGORIA + ")" +
+                "REFERENCES " +
+                TabelaCategorias.NOME_TABELA +
+                ")")
+    }
+
+    companion object{
+        const val NOME_TABELA = "livros"
+        const val CAMPO_TITULO = "titulo"
+        const val CAMPO_AUTOR = "autor"
+        const val CAMPO_ID_CATEGORIA = "id_categoria"
     }
 
 }
